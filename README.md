@@ -38,3 +38,7 @@ npm run dev - Starts the development server
 npm run build - Builds the app for production
 npm run preview - Preview the production build
 npm run lint - Run ESLint for code quality
+```
+![img.png](img.png)
+![img_1.png](img_1.png)
+![img_2.png](img_2.png)
