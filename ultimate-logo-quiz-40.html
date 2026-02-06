@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ultimate Logo Quiz - 40 Questions</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Segoe UI', sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; padding: 20px; }
+.container { max-width: 900px; margin: 0 auto; background: white; border-radius: 15px; box-shadow: 0 10px 40px rgba(0,0,0,0.3); overflow: hidden; }
+.header { background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); color: white; padding: 30px; text-align: center; }
+.header h1 { font-size: 2.5em; margin-bottom: 10px; }
+.quiz-content { padding: 30px; }
+.progress-bar { background: #e9ecef; height: 8px; border-radius: 10px; margin-bottom: 30px; }
+.progress-fill { background: linear-gradient(90deg, #f093fb 0%, #f5576c 100%); height: 100%; transition: width 0.3s; border-radius: 10px; }
+.question { display: none; }
+.question.active { display: block; }
+.question-header { background: #f8f9fa; padding: 15px 20px; border-left: 4px solid #f5576c; margin-bottom: 25px; border-radius: 5px; }
+.question-text { font-size: 1.3em; font-weight: 600; margin-top: 8px; color: #2c3e50; }
+.hint { background: #fff3cd; padding: 12px 18px; border-radius: 8px; margin-bottom: 20px; border-left: 4px solid #ffc107; font-size: 0.95em; color: #856404; }
+.options { margin: 20px 0; }
+.option { background: #f8f9fa; padding: 15px 20px; margin-bottom: 12px; border-radius: 8px; cursor: pointer; transition: all 0.3s; border: 2px solid transparent; display: flex; align-items: center; }
+.option:hover { background: #e9ecef; border-color: #f5576c; transform: translateX(5px); }
+.option input { margin-right: 15px; width: 20px; height: 20px; cursor: pointer; }
+.option.selected { background: #ffe5e9; border-color: #f5576c; }
+.option.correct { background: #d4edda; border-color: #28a745; }
+.option.incorrect { background: #f8d7da; border-color: #dc3545; }
+.explanation { display: none; background: #e7f3ff; padding: 15px 20px; border-left: 4px solid #2196F3; border-radius: 5px; margin-top: 15px; }
+.explanation.show { display: block; }
+.buttons { display: flex; justify-content: space-between; margin-top: 30px; }
+button { padding: 12px 30px; border: none; border-radius: 8px; font-size: 1em; font-weight: 600; cursor: pointer; transition: all 0.3s; }
+.btn-primary { background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); color: white; }
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(245, 87, 108, 0.4); }
+.btn-secondary { background: #6c757d; color: white; }
+.results { display: none; text-align: center; padding: 40px 20px; }
+.results.show { display: block; }
+.score-circle { width: 200px; height: 200px; border-radius: 50%; background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); display: flex; align-items: center; justify-content: center; margin: 30px auto; color: white; font-size: 3em; font-weight: bold; }
+</style>
+</head>
+<body>
+<div class="container">
+<div class="header">
+<h1>🎨 Ultimate Logo Quiz</h1>
+<p>40 challenging questions - Companies, Brands & Welfare Organizations</p>
+</div>
+<div class="quiz-content">
+<div class="progress-bar"><div class="progress-fill" id="progressBar" style="width:0%"></div></div>
+
+<div class="question active" data-question="1">
+<div class="question-header">
+<div style="color: #f5576c; font-weight: bold;">Question 1 of 40</div>
+<div class="question-text">What does the Amazon logo's arrow symbolize?</div>
+</div>
+<div class="hint">💡 Amazon's A-Z arrow pointing from a to z</div>
+<div class="options">
+<label class="option"><input type="radio" name="q1" value="a"><span>Fast delivery</span></label>
+<label class="option"><input type="radio" name="q1" value="b"><span>Everything from A to Z</span></label>
+<label class="option"><input type="radio" name="q1" value="c"><span>Customer smile</span></label>
+<label class="option"><input type="radio" name="q1" value="d"><span>Global reach</span></label>
+</div>
+<div class="explanation"><strong>💡 Explanation:</strong> The arrow from 'a' to 'z' shows Amazon sells everything A to Z, plus it's a smile.</div>
+<div class="buttons">
+<button class="btn-secondary" onclick="previousQuestion()"style="visibility:hidden">Previous</button>
+<button class="btn-primary" onclick="checkAnswer(1)">Submit Answer</button>
+</div>
+</div>
+
+<div class="question " data-question="2">
+<div class="question-header">
+<div style="color: #f5576c; font-weight: bold;">Question 2 of 40</div>
+<div class="question-text">What hidden symbol appears in the FedEx logo?</div>
+</div>
+<div class="hint">💡 Look between the E and x</div>
+<div class="options">
+<label class="option"><input type="radio" name="q2" value="a"><span>Heart symbol</span></label>
+<label class="option"><input type="radio" name="q2" value="b"><span>Forward-pointing arrow</span></label>
+<label class="option"><input type="radio" name="q2" value="c"><span>Airplane</span></label>
+<label class="option"><input type="radio" name="q2" value="d"><span>Package box</span></label>
+</div>
+<div class="explanation"><strong>💡 Explanation:</strong> Hidden arrow in negative space between 'E' and 'x' represents speed and precision.</div>
+<div class="buttons">
+<button class="btn-secondary" onclick="previousQuestion()">Previous</button>
+<button class="btn-primary" onclick="checkAnswer(2)">Submit Answer</button>
+</div>
+</div>
+
+<div class="question " data-question="3">
+<div class="question-header">
+<div style="color: #f5576c; font-weight: bold;">Question 3 of 40</div>
+<div class="question-text">What do the four rings in the Audi logo represent?</div>
+</div>
+<div class="hint">💡 Audi's four interlocking rings</div>
+<div class="options">
+<label class="option"><input type="radio" name="q3" value="a"><span>Four founders</span></label>
+<label class="option"><input type="radio" name="q3" value="b"><span>Four car models</span></label>
+<label class="option"><input type="radio" name="q3" value="c"><span>Four merged companies (Auto Union)</span></label>
+<label class="option"><input type="radio" name="q3" value="d"><span>Four wheels</span></label>
+</div>
+<div class="explanation"><strong>💡 Explanation:</strong> Four rings represent Audi, DKW, Horch, and Wanderer merging in 1932.</div>
+<div class="buttons">
+<button class="btn-secondary" onclick="previousQuestion()">Previous</button>
+<button class="btn-primary" onclick="checkAnswer(3)">Submit Answer</button>
+</div>
+</div>
+
+<div class="question " data-question="4">
+<div class="question-header">
+<div style="color: #f5576c; font-weight: bold;">Question 4 of 40</div>
+<div class="question-text">What animal is hidden in the Toblerone mountain?</div>
+</div>
+<div class="hint">💡 Look carefully at the Matterhorn mountain</div>
+<div class="options">
+<label class="option"><input type="radio" name="q4" value="a"><span>Eagle</span></label>
+<label class="option"><input type="radio" name="q4" value="b"><span>Bear</span></label>
+<label class="option"><input type="radio" name="q4" value="c"><span>Goat</span></label>
+<label class="option"><input type="radio" name="q4" value="d"><span>Wolf</span></label>
+</div>
+<div class="explanation"><strong>💡 Explanation:</strong> Hidden bear represents Bern, Switzerland where Toblerone was created.</div>
+<div class="buttons">
+<button class="btn-secondary" onclick="previousQuestion()">Previous</button>
+<button class="btn-primary" onclick="checkAnswer(4)">Submit Answer</button>
+</div>
+</div>
+
+<div class="question " data-question="5">
+<div class="question-header">
+<div style="color: #f5576c; font-weight: bold;">Question 5 of 40</div>
+<div class="question-text">What does the BMW logo actually represent?</div>
+</div>
+<div class="hint">💡 The blue and white checkered pattern</div>
+<div class="options">
+<label class="option"><input type="radio" name="q5" value="a"><span>Airplane propeller</span></label>
+<label class="option"><input type="radio" name="q5" value="b"><span>Bavarian flag colors and pattern</span></label>
+<label class="option"><input type="radio" name="q5" value="c"><span>Steering wheel</span></label>
+<label class="option"><input type="radio" name="q5" value="d"><span>Engine cylinders</span></label>
+</div>
+<div class="explanation"><strong>💡 Explanation:</strong> Despite myths, it represents the Bavarian flag - BMW is Bayerische Motoren Werke.</div>
+<div class="buttons">
+<button class="btn-secondary" onclick="previousQuestion()">Previous</button>
+<button class="btn-primary" onclick="checkAnswer(5)">Submit Answer</button>
+</div>
+</div>
+
+<div class="question " data-question="6">
+<div class="question-header">
+<div style="color: #f5576c; font-weight: bold;">Question 6 of 40</div>
+<div class="question-text">What number is hidden in Baskin-Robbins logo?</div>
+</div>
+<div class="hint">💡 Look at the BR letters in pink</div>
+<div class="options">
+<label class="option"><input type="radio" name="q6" value="a"><span>31 (31 flavors)</span></label>
+<label class="option"><input type="radio" name="q6" value="b"><span>13 (original flavors)</span></label>
+<label class="option"><input type="radio" name="q6" value="c"><span>21 (year 1921)</span></label>
+<label class="option"><input type="radio" name="q6" value="d"><span>51 (stores)</span></label>
+</div>
+<div class="explanation"><strong>💡 Explanation:</strong> The 'B' and 'R' form '31' - one flavor for each day of the month.</div>
+<div class="buttons">
+<button class="btn-secondary" onclick="previousQuestion()">Previous</button>
+<button class="btn-primary" onclick="checkAnswer(6)">Submit Answer</button>
+</div>
+</div>
+
+<div class="question " data-question="7">
+<div class="question-header">
+<div style="color: #f5576c; font-weight: bold;">Question 7 of 40</div>
+<div class="question-text">What does the Nike swoosh symbolize?</div>
+</div>
+<div class="hint">💡 The curved swoosh mark</div>
+<div class="options">
+<label class="option"><input type="radio" name="q7" value="a"><span>Speed and movement</span></label>
+<label class="option"><input type="radio" name="q7" value="b"><span>Checkmark</span></label>
+<label class="option"><input type="radio" name="q7" value="c"><span>Wing of Nike goddess of victory</span></label>
+<label class="option"><input type="radio" name="q7" value="d"><span>Track curve</span></label>
+</div>
+<div class="explanation"><strong>💡 Explanation:</strong> Swoosh represents the wing of Nike, Greek goddess of victory.</div>
+<div class="buttons">
+<button class="btn-secondary" onclick="previousQuestion()">Previous</button>
+<button class="btn-primary" onclick="checkAnswer(7)">Submit Answer</button>
+</div>
+</div>
+
+<div class="question " data-question="8">
+<div class="question-header">
+<div style="color: #f5576c; font-weight: bold;">Question 8 of 40</div>
+<div class="question-text">What is hidden in Formula 1 logo?</div>
+</div>
+<div class="hint">💡 Look at the negative space</div>
+<div class="options">
+<label class="option"><input type="radio" name="q8" value="a"><span>Number 1 in negative space</span></label>
+<label class="option"><input type="radio" name="q8" value="b"><span>Racing flag</span></label>
+<label class="option"><input type="radio" name="q8" value="c"><span>Race car</span></label>
+<label class="option"><input type="radio" name="q8" value="d"><span>Trophy</span></label>
+</div>
+<div class="explanation"><strong>💡 Explanation:</strong> White space between 'F' and red stripes creates the number '1'.</div>
+<div class="buttons">
+<button class="btn-secondary" onclick="previousQuestion()">Previous</button>
+<button class="btn-primary" onclick="checkAnswer(8)">Submit Answer</button>
+</div>
+</div>
+
+<div class="question " data-question="9">
+<div class="question-header">
+<div style="color: #f5576c; font-weight: bold;">Question 9 of 40</div>
+<div class="question-text">What do Adidas three stripes represent?</div>
+</div>
+<div class="hint">💡 Three diagonal stripes ascending</div>
+<div class="options">
+<label class="option"><input type="radio" name="q9" value="a"><span>Olympic medals</span></label>
+<label class="option"><input type="radio" name="q9" value="b"><span>Mountain to overcome challenges</span></label>
+<label class="option"><input type="radio" name="q9" value="c"><span>Stadium seating</span></label>
+<label class="option"><input type="radio" name="q9" value="d"><span>Three continents</span></label>
+</div>
+<div class="explanation"><strong>💡 Explanation:</strong> Ascending stripes form a mountain representing challenges and achievement.</div>
+<div class="buttons">
+<button class="btn-secondary" onclick="previousQuestion()">Previous</button>
+<button class="btn-primary" onclick="checkAnswer(9)">Submit Answer</button>
+</div>
+</div>
+
+<div class="question " data-question="10">
+<div class="question-header">
+<div style="color: #f5576c; font-weight: bold;">Question 10 of 40</div>
+<div class="question-text">What's hidden in the LG logo?</div>
+</div>
+<div class="hint">💡 Imagine the logo as a face</div>
+<div class="options">
+<label class="option"><input type="radio" name="q10" value="a"><span>Clock</span></label>
+<label class="option"><input type="radio" name="q10" value="b"><span>Smiling/winking face</span></label>
+<label class="option"><input type="radio" name="q10" value="c"><span>L and G letters</span></label>
+<label class="option"><input type="radio" name="q10" value="d"><span>Power button</span></label>
+</div>
+<div class="explanation"><strong>💡 Explanation:</strong> Logo forms a friendly winking face representing 'Life's Good'.</div>
+<div class="buttons">
+<button class="btn-secondary" onclick="previousQuestion()">Previous</button>
+<button class="btn-primary" onclick="checkAnswer(10)">Submit Answer</button>
+</div>
+</div>
+
+<div class="question " data-question="11">
+<div class="question-header">
+<div style="color: #f5576c; font-weight: bold;">Question 11 of 40</div>
+<div class="question-text">Why does Red Cross use a red cross?</div>
+</div>
+<div class="hint">💡 The red cross on white background</div>
+<div class="options">
+<label class="option"><input type="radio" name="q11" value="a"><span>Medical hospitals</span></label>
+<label class="option"><input type="radio" name="q11" value="b"><span>Christian cross</span></label>
+<label class="option"><input type="radio" name="q11" value="c"><span>Reverse of Swiss flag (tribute to founder)</span></label>
+<label class="option"><input type="radio" name="q11" value="d"><span>Four directions</span></label>
+</div>
+<div class="explanation"><strong>💡 Explanation:</strong> Red cross is reverse of Swiss flag, honoring Swiss founder Henry Dunant (1863).</div>
+<div class="buttons">
+<button class="btn-secondary" onclick="previousQuestion()">Previous</button>
+<button class="btn-primary" onclick="checkAnswer(11)">Submit Answer</button>
+</div>
+</div>
+
+<div class="question " data-question="12">
+<div class="question-header">
+<div style="color: #f5576c; font-weight: bold;">Question 12 of 40</div>
+<div class="question-text">Why was a panda chosen for WWF logo?</div>
+</div>
+<div class="hint">💡 The black and white panda</div>
+<div class="options">
+<label class="option"><input type="radio" name="q12" value="a"><span>Most endangered</span></label>
+<label class="option"><input type="radio" name="q12" value="b"><span>Based on Chi-Chi panda at London Zoo 1961</span></label>
+<label class="option"><input type="radio" name="q12" value="c"><span>Represents Asia</span></label>
+<label class="option"><input type="radio" name="q12" value="d"><span>Founder's favorite</span></label>
+</div>
+<div class="explanation"><strong>💡 Explanation:</strong> Inspired by Chi-Chi at London Zoo in 1961 when WWF was founded.</div>
+<div class="buttons">
+<button class="btn-secondary" onclick="previousQuestion()">Previous</button>
+<button class="btn-primary" onclick="checkAnswer(12)">Submit Answer</button>
+</div>
+</div>
+
+<div class="question " data-question="13">
+<div class="question-header">
+<div style="color: #f5576c; font-weight: bold;">Question 13 of 40</div>
+<div class="question-text">Why is there a bite in Apple logo?</div>
+</div>
+<div class="hint">💡 The apple with a bite taken out</div>
+<div class="options">
+<label class="option"><input type="radio" name="q13" value="a"><span>Distinguish from cherry/tomato</span></label>
+<label class="option"><input type="radio" name="q13" value="b"><span>Adam and Eve reference</span></label>
+<label class="option"><input type="radio" name="q13" value="c"><span>Tribute to Alan Turing</span></label>
+<label class="option"><input type="radio" name="q13" value="d"><span>Steve Jobs liked asymmetry</span></label>
+</div>
+<div class="explanation"><strong>💡 Explanation:</strong> Designer added bite so it wouldn't look like a cherry or tomato.</div>
+<div class="buttons">
+<button class="btn-secondary" onclick="previousQuestion()">Previous</button>
+<button class="btn-primary" onclick="checkAnswer(13)">Submit Answer</button>
+</div>
+</div>
+
+<div class="question " data-question="14">
+<div class="question-header">
+<div style="color: #f5576c; font-weight: bold;">Question 14 of 40</div>
+<div class="question-text">What do UN olive branches symbolize?</div>
+</div>
+<div class="hint">💡 Olive branches framing the world map</div>
+<div class="options">
+<label class="option"><input type="radio" name="q14" value="a"><span>Agricultural cooperation</span></label>
+<label class="option"><input type="radio" name="q14" value="b"><span>Environmental protection</span></label>
+<label class="option"><input type="radio" name="q14" value="c"><span>Peace and unity</span></label>
+<label class="option"><input type="radio" name="q14" value="d"><span>Mediterranean heritage</span></label>
+</div>
+<div class="explanation"><strong>💡 Explanation:</strong> Olive branches have symbolized peace since ancient times.</div>
+<div class="buttons">
+<button class="btn-secondary" onclick="previousQuestion()">Previous</button>
+<button class="btn-primary" onclick="checkAnswer(14)">Submit Answer</button>
+</div>
+</div>
+
+<div class="question " data-question="15">
+<div class="question-header">
+<div style="color: #f5576c; font-weight: bold;">Question 15 of 40</div>
+<div class="question-text">What concept inspired Pepsi's expensive redesign?</div>
+</div>
+<div class="hint">💡 The 2008 Pepsi logo redesign</div>
+<div class="options">
+<label class="option"><input type="radio" name="q15" value="a"><span>Olympic rings</span></label>
+<label class="option"><input type="radio" name="q15" value="b"><span>Golden ratio, magnetic fields, Earth dynamics</span></label>
+<label class="option"><input type="radio" name="q15" value="c"><span>Yin and yang</span></label>
+<label class="option"><input type="radio" name="q15" value="d"><span>American flag</span></label>
+</div>
+<div class="explanation"><strong>💡 Explanation:</strong> 2008 redesign came with 27-page document about golden ratio, etc.</div>
+<div class="buttons">
+<button class="btn-secondary" onclick="previousQuestion()">Previous</button>
+<button class="btn-primary" onclick="checkAnswer(15)">Submit Answer</button>
+</div>
+</div>
+
+<div class="question " data-question="16">
+<div class="question-header">
+<div style="color: #f5576c; font-weight: bold;">Question 16 of 40</div>
+<div class="question-text">What does UNICEF mother-child symbol represent?</div>
+</div>
+<div class="hint">💡 Mother and child in the logo</div>
+<div class="options">
+<label class="option"><input type="radio" name="q16" value="a"><span>Children's rights and protection</span></label>
+<label class="option"><input type="radio" name="q16" value="b"><span>Maternal healthcare</span></label>
+<label class="option"><input type="radio" name="q16" value="c"><span>Family planning</span></label>
+<label class="option"><input type="radio" name="q16" value="d"><span>Mother education</span></label>
+</div>
+<div class="explanation"><strong>💡 Explanation:</strong> Symbolizes UNICEF's mission: protecting children's rights.</div>
+<div class="buttons">
+<button class="btn-secondary" onclick="previousQuestion()">Previous</button>
+<button class="btn-primary" onclick="checkAnswer(16)">Submit Answer</button>
+</div>
+</div>
+
+<div class="question " data-question="17">
+<div class="question-header">
+<div style="color: #f5576c; font-weight: bold;">Question 17 of 40</div>
+<div class="question-text">Hyundai logo isn't just an 'H' - what else?</div>
+</div>
+<div class="hint">💡 The stylized H in an oval</div>
+<div class="options">
+<label class="option"><input type="radio" name="q17" value="a"><span>Steering wheel</span></label>
+<label class="option"><input type="radio" name="q17" value="b"><span>Highway road</span></label>
+<label class="option"><input type="radio" name="q17" value="c"><span>Two people shaking hands</span></label>
+<label class="option"><input type="radio" name="q17" value="d"><span>Engine piston</span></label>
+</div>
+<div class="explanation"><strong>💡 Explanation:</strong> The 'H' shows two people (company and customer) shaking hands.</div>
+<div class="buttons">
+<button class="btn-secondary" onclick="previousQuestion()">Previous</button>
+<button class="btn-primary" onclick="checkAnswer(17)">Submit Answer</button>
+</div>
+</div>
+
+<div class="question " data-question="18">
+<div class="question-header">
+<div style="color: #f5576c; font-weight: bold;">Question 18 of 40</div>
+<div class="question-text">Amnesty candle and barbed wire symbolize?</div>
+</div>
+<div class="hint">💡 Candle surrounded by barbed wire</div>
+<div class="options">
+<label class="option"><input type="radio" name="q18" value="a"><span>Religious freedom</span></label>
+<label class="option"><input type="radio" name="q18" value="b"><span>Hope in darkest times of human rights abuse</span></label>
+<label class="option"><input type="radio" name="q18" value="c"><span>Prisoners only</span></label>
+<label class="option"><input type="radio" name="q18" value="d"><span>War and peace</span></label>
+</div>
+<div class="explanation"><strong>💡 Explanation:</strong> Hope in the darkest situations of human rights violations.</div>
+<div class="buttons">
+<button class="btn-secondary" onclick="previousQuestion()">Previous</button>
+<button class="btn-primary" onclick="checkAnswer(18)">Submit Answer</button>
+</div>
+</div>
+
+<div class="question " data-question="19">
+<div class="question-header">
+<div style="color: #f5576c; font-weight: bold;">Question 19 of 40</div>
+<div class="question-text">What does 'Volkswagen' literally mean?</div>
+</div>
+<div class="hint">💡 The VW letters in a circle</div>
+<div class="options">
+<label class="option"><input type="radio" name="q19" value="a"><span>People's car</span></label>
+<label class="option"><input type="radio" name="q19" value="b"><span>German car</span></label>
+<label class="option"><input type="radio" name="q19" value="c"><span>Reliable car</span></label>
+<label class="option"><input type="radio" name="q19" value="d"><span>Beetle car</span></label>
+</div>
+<div class="explanation"><strong>💡 Explanation:</strong> 'Volkswagen' = 'people's car' in German.</div>
+<div class="buttons">
+<button class="btn-secondary" onclick="previousQuestion()">Previous</button>
+<button class="btn-primary" onclick="checkAnswer(19)">Submit Answer</button>
+</div>
+</div>
+
+<div class="question " data-question="20">
+<div class="question-header">
+<div style="color: #f5576c; font-weight: bold;">Question 20 of 40</div>
+<div class="question-text">Greenpeace name and color meaning?</div>
+</div>
+<div class="hint">💡 Green text and organization name</div>
+<div class="options">
+<label class="option"><input type="radio" name="q20" value="a"><span>Green forests, protests</span></label>
+<label class="option"><input type="radio" name="q20" value="b"><span>Green planet and peace activism</span></label>
+<label class="option"><input type="radio" name="q20" value="c"><span>Recycling, anti-war</span></label>
+<label class="option"><input type="radio" name="q20" value="d"><span>Natural living</span></label>
+</div>
+<div class="explanation"><strong>💡 Explanation:</strong> Combines environmental activism with nonviolent action.</div>
+<div class="buttons">
+<button class="btn-secondary" onclick="previousQuestion()">Previous</button>
+<button class="btn-primary" onclick="checkAnswer(20)">Submit Answer</button>
+</div>
+</div>
+
+<div class="question " data-question="21">
+<div class="question-header">
+<div style="color: #f5576c; font-weight: bold;">Question 21 of 40</div>
+<div class="question-text">What do Cisco vertical lines represent?</div>
+</div>
+<div class="hint">💡 Vertical blue lines of varying heights</div>
+<div class="options">
+<label class="option"><input type="radio" name="q21" value="a"><span>Digital signals</span></label>
+<label class="option"><input type="radio" name="q21" value="b"><span>Server racks</span></label>
+<label class="option"><input type="radio" name="q21" value="c"><span>Golden Gate Bridge (San Francisco)</span></label>
+<label class="option"><input type="radio" name="q21" value="d"><span>Binary code</span></label>
+</div>
+<div class="explanation"><strong>💡 Explanation:</strong> Lines represent Golden Gate Bridge. 'Cisco' = San Francisco.</div>
+<div class="buttons">
+<button class="btn-secondary" onclick="previousQuestion()">Previous</button>
+<button class="btn-primary" onclick="checkAnswer(21)">Submit Answer</button>
+</div>
+</div>
+
+<div class="question " data-question="22">
+<div class="question-header">
+<div style="color: #f5576c; font-weight: bold;">Question 22 of 40</div>
+<div class="question-text">What does 'Oxfam' stand for?</div>
+</div>
+<div class="hint">💡 The Oxfam name and organization</div>
+<div class="options">
+<label class="option"><input type="radio" name="q22" value="a"><span>Oxford Committee for Famine Relief</span></label>
+<label class="option"><input type="radio" name="q22" value="b"><span>Organization X For Mankind</span></label>
+<label class="option"><input type="radio" name="q22" value="c"><span>Oxfordshire Family Aid</span></label>
+<label class="option"><input type="radio" name="q22" value="d"><span>Overseas Exchange Aid</span></label>
+</div>
+<div class="explanation"><strong>💡 Explanation:</strong> Oxford Committee for Famine Relief, founded 1942.</div>
+<div class="buttons">
+<button class="btn-secondary" onclick="previousQuestion()">Previous</button>
+<button class="btn-primary" onclick="checkAnswer(22)">Submit Answer</button>
+</div>
+</div>
+
+<div class="question " data-question="23">
+<div class="question-header">
+<div style="color: #f5576c; font-weight: bold;">Question 23 of 40</div>
+<div class="question-text">What's hidden in Tour de France logo?</div>
+</div>
+<div class="hint">💡 The TOUR letters and yellow circle</div>
+<div class="options">
+<label class="option"><input type="radio" name="q23" value="a"><span>French flag</span></label>
+<label class="option"><input type="radio" name="q23" value="b"><span>Cyclist on bicycle (O and U wheels)</span></label>
+<label class="option"><input type="radio" name="q23" value="c"><span>Eiffel Tower</span></label>
+<label class="option"><input type="radio" name="q23" value="d"><span>Mountains</span></label>
+</div>
+<div class="explanation"><strong>💡 Explanation:</strong> 'R' forms cyclist, 'O' is back wheel, 'U' is front wheel.</div>
+<div class="buttons">
+<button class="btn-secondary" onclick="previousQuestion()">Previous</button>
+<button class="btn-primary" onclick="checkAnswer(23)">Submit Answer</button>
+</div>
+</div>
+
+<div class="question " data-question="24">
+<div class="question-header">
+<div style="color: #f5576c; font-weight: bold;">Question 24 of 40</div>
+<div class="question-text">When was Save the Children founded?</div>
+</div>
+<div class="hint">💡 Save the Children organization history</div>
+<div class="options">
+<label class="option"><input type="radio" name="q24" value="a"><span>1945 post-WWII</span></label>
+<label class="option"><input type="radio" name="q24" value="b"><span>1929 Depression</span></label>
+<label class="option"><input type="radio" name="q24" value="c"><span>1919 helping WWI blockade children</span></label>
+<label class="option"><input type="radio" name="q24" value="d"><span>1960 famine</span></label>
+</div>
+<div class="explanation"><strong>💡 Explanation:</strong> Founded 1919 to help children affected by Allied blockade.</div>
+<div class="buttons">
+<button class="btn-secondary" onclick="previousQuestion()">Previous</button>
+<button class="btn-primary" onclick="checkAnswer(24)">Submit Answer</button>
+</div>
+</div>
+
+<div class="question " data-question="25">
+<div class="question-header">
+<div style="color: #f5576c; font-weight: bold;">Question 25 of 40</div>
+<div class="question-text">What does the 'b' in Beats by Dre represent?</div>
+</div>
+<div class="hint">💡 The circular b logo</div>
+<div class="options">
+<label class="option"><input type="radio" name="q25" value="a"><span>Bass speaker</span></label>
+<label class="option"><input type="radio" name="q25" value="b"><span>Person wearing headphones</span></label>
+<label class="option"><input type="radio" name="q25" value="c"><span>Bluetooth</span></label>
+<label class="option"><input type="radio" name="q25" value="d"><span>Dr. Dre initial</span></label>
+</div>
+<div class="explanation"><strong>💡 Explanation:</strong> Circle = head, 'b' = headband and ear cup.</div>
+<div class="buttons">
+<button class="btn-secondary" onclick="previousQuestion()">Previous</button>
+<button class="btn-primary" onclick="checkAnswer(25)">Submit Answer</button>
+</div>
+</div>
+
+<div class="question " data-question="26">
+<div class="question-header">
+<div style="color: #f5576c; font-weight: bold;">Question 26 of 40</div>
+<div class="question-text">What does 'Médecins Sans Frontières' mean?</div>
+</div>
+<div class="hint">💡 MSF organization name</div>
+<div class="options">
+<label class="option"><input type="radio" name="q26" value="a"><span>Doctors Without Borders</span></label>
+<label class="option"><input type="radio" name="q26" value="b"><span>Medicine Without Limits</span></label>
+<label class="option"><input type="radio" name="q26" value="c"><span>Physicians Without Boundaries</span></label>
+<label class="option"><input type="radio" name="q26" value="d"><span>Medical Care Everywhere</span></label>
+</div>
+<div class="explanation"><strong>💡 Explanation:</strong> MSF = Doctors Without Borders, founded 1971.</div>
+<div class="buttons">
+<button class="btn-secondary" onclick="previousQuestion()">Previous</button>
+<button class="btn-primary" onclick="checkAnswer(26)">Submit Answer</button>
+</div>
+</div>
+
+<div class="question " data-question="27">
+<div class="question-header">
+<div style="color: #f5576c; font-weight: bold;">Question 27 of 40</div>
+<div class="question-text">What animal is actually in Firefox logo?</div>
+</div>
+<div class="hint">💡 The orange/red animal in the logo</div>
+<div class="options">
+<label class="option"><input type="radio" name="q27" value="a"><span>Wolf</span></label>
+<label class="option"><input type="radio" name="q27" value="b"><span>Regular fox</span></label>
+<label class="option"><input type="radio" name="q27" value="c"><span>Red panda (also called firefox)</span></label>
+<label class="option"><input type="radio" name="q27" value="d"><span>Phoenix</span></label>
+</div>
+<div class="explanation"><strong>💡 Explanation:</strong> 'Firefox' is nickname for red panda.</div>
+<div class="buttons">
+<button class="btn-secondary" onclick="previousQuestion()">Previous</button>
+<button class="btn-primary" onclick="checkAnswer(27)">Submit Answer</button>
+</div>
+</div>
+
+<div class="question " data-question="28">
+<div class="question-header">
+<div style="color: #f5576c; font-weight: bold;">Question 28 of 40</div>
+<div class="question-text">What do WFP hands symbolize?</div>
+</div>
+<div class="hint">💡 Hands in World Food Programme logo</div>
+<div class="options">
+<label class="option"><input type="radio" name="q28" value="a"><span>Farmers harvesting</span></label>
+<label class="option"><input type="radio" name="q28" value="b"><span>Holding grain/giving-receiving food</span></label>
+<label class="option"><input type="radio" name="q28" value="c"><span>Prayer</span></label>
+<label class="option"><input type="radio" name="q28" value="d"><span>Unity</span></label>
+</div>
+<div class="explanation"><strong>💡 Explanation:</strong> Hands represent giving/receiving food aid.</div>
+<div class="buttons">
+<button class="btn-secondary" onclick="previousQuestion()">Previous</button>
+<button class="btn-primary" onclick="checkAnswer(28)">Submit Answer</button>
+</div>
+</div>
+
+<div class="question " data-question="29">
+<div class="question-header">
+<div style="color: #f5576c; font-weight: bold;">Question 29 of 40</div>
+<div class="question-text">What letter is hidden in Carrefour logo?</div>
+</div>
+<div class="hint">💡 The white space between colored arrows</div>
+<div class="options">
+<label class="option"><input type="radio" name="q29" value="a"><span>Letter C (for Carrefour)</span></label>
+<label class="option"><input type="radio" name="q29" value="b"><span>Letter F</span></label>
+<label class="option"><input type="radio" name="q29" value="c"><span>Letter M</span></label>
+<label class="option"><input type="radio" name="q29" value="d"><span>Letter X</span></label>
+</div>
+<div class="explanation"><strong>💡 Explanation:</strong> White space forms 'C'. Carrefour = 'crossroads'.</div>
+<div class="buttons">
+<button class="btn-secondary" onclick="previousQuestion()">Previous</button>
+<button class="btn-primary" onclick="checkAnswer(29)">Submit Answer</button>
+</div>
+</div>
+
+<div class="question " data-question="30">
+<div class="question-header">
+<div style="color: #f5576c; font-weight: bold;">Question 30 of 40</div>
+<div class="question-text">What does Human Rights Watch figure represent?</div>
+</div>
+<div class="hint">💡 Silhouette figure in the logo</div>
+<div class="options">
+<label class="option"><input type="radio" name="q30" value="a"><span>Protester</span></label>
+<label class="option"><input type="radio" name="q30" value="b"><span>Welcome</span></label>
+<label class="option"><input type="radio" name="q30" value="c"><span>Person standing watchful/vigilant</span></label>
+<label class="option"><input type="radio" name="q30" value="d"><span>Scales</span></label>
+</div>
+<div class="explanation"><strong>💡 Explanation:</strong> Figure standing watch - vigilant monitoring.</div>
+<div class="buttons">
+<button class="btn-secondary" onclick="previousQuestion()">Previous</button>
+<button class="btn-primary" onclick="checkAnswer(30)">Submit Answer</button>
+</div>
+</div>
+
+<div class="question " data-question="31">
+<div class="question-header">
+<div style="color: #f5576c; font-weight: bold;">Question 31 of 40</div>
+<div class="question-text">What does NBC peacock represent?</div>
+</div>
+<div class="hint">💡 The colorful peacock with spread feathers</div>
+<div class="options">
+<label class="option"><input type="radio" name="q31" value="a"><span>American pride</span></label>
+<label class="option"><input type="radio" name="q31" value="b"><span>Color television capability (1950s)</span></label>
+<label class="option"><input type="radio" name="q31" value="c"><span>Programming diversity</span></label>
+<label class="option"><input type="radio" name="q31" value="d"><span>Time zones</span></label>
+</div>
+<div class="explanation"><strong>💡 Explanation:</strong> Introduced 1956 to promote color TV.</div>
+<div class="buttons">
+<button class="btn-secondary" onclick="previousQuestion()">Previous</button>
+<button class="btn-primary" onclick="checkAnswer(31)">Submit Answer</button>
+</div>
+</div>
+
+<div class="question " data-question="32">
+<div class="question-header">
+<div style="color: #f5576c; font-weight: bold;">Question 32 of 40</div>
+<div class="question-text">What symbol is in WHO logo?</div>
+</div>
+<div class="hint">💡 Rod with snake on UN emblem</div>
+<div class="options">
+<label class="option"><input type="radio" name="q32" value="a"><span>Rod of Asclepius (staff, single snake)</span></label>
+<label class="option"><input type="radio" name="q32" value="b"><span>Caduceus (two snakes)</span></label>
+<label class="option"><input type="radio" name="q32" value="c"><span>Red cross</span></label>
+<label class="option"><input type="radio" name="q32" value="d"><span>Stethoscope</span></label>
+</div>
+<div class="explanation"><strong>💡 Explanation:</strong> Rod of Asclepius - traditional medicine symbol.</div>
+<div class="buttons">
+<button class="btn-secondary" onclick="previousQuestion()">Previous</button>
+<button class="btn-primary" onclick="checkAnswer(32)">Submit Answer</button>
+</div>
+</div>
+
+<div class="question " data-question="33">
+<div class="question-header">
+<div style="color: #f5576c; font-weight: bold;">Question 33 of 40</div>
+<div class="question-text">What's hidden in Pinterest 'P'?</div>
+</div>
+<div class="hint">💡 The Pinterest P logo</div>
+<div class="options">
+<label class="option"><input type="radio" name="q33" value="a"><span>Paintbrush</span></label>
+<label class="option"><input type="radio" name="q33" value="b"><span>Thumbtack</span></label>
+<label class="option"><input type="radio" name="q33" value="c"><span>A pin (pinning images)</span></label>
+<label class="option"><input type="radio" name="q33" value="d"><span>Picture frame</span></label>
+</div>
+<div class="explanation"><strong>💡 Explanation:</strong> 'P' designed like a pin for 'pinning' images.</div>
+<div class="buttons">
+<button class="btn-secondary" onclick="previousQuestion()">Previous</button>
+<button class="btn-primary" onclick="checkAnswer(33)">Submit Answer</button>
+</div>
+</div>
+
+<div class="question " data-question="34">
+<div class="question-header">
+<div style="color: #f5576c; font-weight: bold;">Question 34 of 40</div>
+<div class="question-text">Habitat for Humanity mission?</div>
+</div>
+<div class="hint">💡 House logo of Habitat for Humanity</div>
+<div class="options">
+<label class="option"><input type="radio" name="q34" value="a"><span>Homeless shelters</span></label>
+<label class="option"><input type="radio" name="q34" value="b"><span>Building affordable housing with volunteers</span></label>
+<label class="option"><input type="radio" name="q34" value="c"><span>Real estate</span></label>
+<label class="option"><input type="radio" name="q34" value="d"><span>Home repair</span></label>
+</div>
+<div class="explanation"><strong>💡 Explanation:</strong> Builds affordable homes with volunteer labor.</div>
+<div class="buttons">
+<button class="btn-secondary" onclick="previousQuestion()">Previous</button>
+<button class="btn-primary" onclick="checkAnswer(34)">Submit Answer</button>
+</div>
+</div>
+
+<div class="question " data-question="35">
+<div class="question-header">
+<div style="color: #f5576c; font-weight: bold;">Question 35 of 40</div>
+<div class="question-text">What does Mitsubishi logo represent?</div>
+</div>
+<div class="hint">💡 Three red diamonds</div>
+<div class="options">
+<label class="option"><input type="radio" name="q35" value="a"><span>Three diamonds (Japanese)</span></label>
+<label class="option"><input type="radio" name="q35" value="b"><span>Three mountains</span></label>
+<label class="option"><input type="radio" name="q35" value="c"><span>Propeller blades</span></label>
+<label class="option"><input type="radio" name="q35" value="d"><span>Founding families</span></label>
+</div>
+<div class="explanation"><strong>💡 Explanation:</strong> 'Mitsubishi' = 'three diamonds' in Japanese.</div>
+<div class="buttons">
+<button class="btn-secondary" onclick="previousQuestion()">Previous</button>
+<button class="btn-primary" onclick="checkAnswer(35)">Submit Answer</button>
+</div>
+</div>
+
+<div class="question " data-question="36">
+<div class="question-header">
+<div style="color: #f5576c; font-weight: bold;">Question 36 of 40</div>
+<div class="question-text">What do five Olympic rings represent?</div>
+</div>
+<div class="hint">💡 Five interlocking colored rings</div>
+<div class="options">
+<label class="option"><input type="radio" name="q36" value="a"><span>Five oceans</span></label>
+<label class="option"><input type="radio" name="q36" value="b"><span>Five continents united in sport</span></label>
+<label class="option"><input type="radio" name="q36" value="c"><span>Five sports</span></label>
+<label class="option"><input type="radio" name="q36" value="d"><span>Five nations</span></label>
+</div>
+<div class="explanation"><strong>💡 Explanation:</strong> Five continents united through sport.</div>
+<div class="buttons">
+<button class="btn-secondary" onclick="previousQuestion()">Previous</button>
+<button class="btn-primary" onclick="checkAnswer(36)">Submit Answer</button>
+</div>
+</div>
+
+<div class="question " data-question="37">
+<div class="question-header">
+<div style="color: #f5576c; font-weight: bold;">Question 37 of 40</div>
+<div class="question-text">What does Mercedes three-pointed star mean?</div>
+</div>
+<div class="hint">💡 Three-pointed star in a circle</div>
+<div class="options">
+<label class="option"><input type="radio" name="q37" value="a"><span>Three founders</span></label>
+<label class="option"><input type="radio" name="q37" value="b"><span>Land, sea, air dominance</span></label>
+<label class="option"><input type="radio" name="q37" value="c"><span>Three-cylinder engine</span></label>
+<label class="option"><input type="radio" name="q37" value="d"><span>German states</span></label>
+</div>
+<div class="explanation"><strong>💡 Explanation:</strong> Dominance on land, sea, and air.</div>
+<div class="buttons">
+<button class="btn-secondary" onclick="previousQuestion()">Previous</button>
+<button class="btn-primary" onclick="checkAnswer(37)">Submit Answer</button>
+</div>
+</div>
+
+<div class="question " data-question="38">
+<div class="question-header">
+<div style="color: #f5576c; font-weight: bold;">Question 38 of 40</div>
+<div class="question-text">Why is Twitter bird called 'Larry'?</div>
+</div>
+<div class="hint">💡 The blue Twitter bird</div>
+<div class="options">
+<label class="option"><input type="radio" name="q38" value="a"><span>Founder's son</span></label>
+<label class="option"><input type="radio" name="q38" value="b"><span>Named after Larry Bird (basketball)</span></label>
+<label class="option"><input type="radio" name="q38" value="c"><span>Larry Page</span></label>
+<label class="option"><input type="radio" name="q38" value="d"><span>Random</span></label>
+</div>
+<div class="explanation"><strong>💡 Explanation:</strong> Named after NBA legend Larry Bird.</div>
+<div class="buttons">
+<button class="btn-secondary" onclick="previousQuestion()">Previous</button>
+<button class="btn-primary" onclick="checkAnswer(38)">Submit Answer</button>
+</div>
+</div>
+
+<div class="question " data-question="39">
+<div class="question-header">
+<div style="color: #f5576c; font-weight: bold;">Question 39 of 40</div>
+<div class="question-text">What does Starbucks siren represent?</div>
+</div>
+<div class="hint">💡 The two-tailed mermaid/siren</div>
+<div class="options">
+<label class="option"><input type="radio" name="q39" value="a"><span>Greek mythology</span></label>
+<label class="option"><input type="radio" name="q39" value="b"><span>Coffee origins</span></label>
+<label class="option"><input type="radio" name="q39" value="c"><span>Seattle maritime heritage/seduction</span></label>
+<label class="option"><input type="radio" name="q39" value="d"><span>Founder's dream</span></label>
+</div>
+<div class="explanation"><strong>💡 Explanation:</strong> Seattle maritime history - seducing people to coffee.</div>
+<div class="buttons">
+<button class="btn-secondary" onclick="previousQuestion()">Previous</button>
+<button class="btn-primary" onclick="checkAnswer(39)">Submit Answer</button>
+</div>
+</div>
+
+<div class="question " data-question="40">
+<div class="question-header">
+<div style="color: #f5576c; font-weight: bold;">Question 40 of 40</div>
+<div class="question-text">Peace symbol origin in CND logo?</div>
+</div>
+<div class="hint">💡 Circle with lines forming peace symbol</div>
+<div class="options">
+<label class="option"><input type="radio" name="q40" value="a"><span>Dove</span></label>
+<label class="option"><input type="radio" name="q40" value="b"><span>Semaphore for N and D (Nuclear Disarmament)</span></label>
+<label class="option"><input type="radio" name="q40" value="c"><span>Broken rifle</span></label>
+<label class="option"><input type="radio" name="q40" value="d"><span>Olive branch</span></label>
+</div>
+<div class="explanation"><strong>💡 Explanation:</strong> Semaphore signals for 'N' and 'D' in circle, 1958.</div>
+<div class="buttons">
+<button class="btn-secondary" onclick="previousQuestion()">Previous</button>
+<button class="btn-primary" onclick="checkAnswer(40)">Submit Answer</button>
+</div>
+</div>
+
+<div class="results" id="results">
+<h2>Quiz Complete! 🎉</h2>
+<div class="score-circle" id="scoreCircle">0%</div>
+<div style="margin: 30px 0; font-size: 1.2em;" id="performance"></div>
+<button class="btn-primary" onclick="restartQuiz()">Retake Quiz</button>
+</div>
+</div>
+</div>
+<script>
+let currentQuestion = 1;
+const totalQuestions = 40;
+const correctAnswers = {"1": "b", "2": "b", "3": "c", "4": "b", "5": "b", "6": "a", "7": "c", "8": "a", "9": "b", "10": "b", "11": "c", "12": "b", "13": "a", "14": "c", "15": "b", "16": "a", "17": "c", "18": "b", "19": "a", "20": "b", "21": "c", "22": "a", "23": "b", "24": "c", "25": "b", "26": "a", "27": "c", "28": "b", "29": "a", "30": "c", "31": "b", "32": "a", "33": "c", "34": "b", "35": "a", "36": "b", "37": "b", "38": "b", "39": "c", "40": "b"};
+let userAnswers = {};
+let score = 0;
+
+document.querySelectorAll('.option').forEach(option => {
+option.addEventListener('click', function() {
+const radio = this.querySelector('input');
+radio.checked = true;
+this.parentElement.querySelectorAll('.option').forEach(opt => opt.classList.remove('selected'));
+this.classList.add('selected');
+});
+});
+
+function updateProgress() {
+document.getElementById('progressBar').style.width = (currentQuestion / totalQuestions * 100) + '%';
+}
+
+function checkAnswer(qNum) {
+const selected = document.querySelector(`input[name="q${qNum}"]:checked`);
+if (!selected) { alert('Please select an answer!'); return; }
+
+userAnswers[qNum] = selected.value;
+const options = document.querySelectorAll(`input[name="q${qNum}"]`);
+const correct = correctAnswers[qNum];
+
+options.forEach(option => {
+option.disabled = true;
+const label = option.closest('.option');
+if (option.value === correct) label.classList.add('correct');
+else if (option.checked) label.classList.add('incorrect');
+});
+
+document.querySelector(`.question[data-question="${qNum}"] .explanation`).classList.add('show');
+
+const btn = document.querySelector(`.question[data-question="${qNum}"] .btn-primary`);
+if (qNum < totalQuestions) {
+btn.textContent = 'Next Question';
+btn.onclick = () => nextQuestion();
+} else {
+btn.textContent = 'View Results';
+btn.onclick = () => showResults();
+}
+
+if (selected.value === correct) score++;
+}
+
+function nextQuestion() {
+document.querySelector(`.question[data-question="${currentQuestion}"]`).classList.remove('active');
+currentQuestion++;
+document.querySelector(`.question[data-question="${currentQuestion}"]`).classList.add('active');
+updateProgress();
+}
+
+function previousQuestion() {
+if (currentQuestion > 1) {
+document.querySelector(`.question[data-question="${currentQuestion}"]`).classList.remove('active');
+currentQuestion--;
+document.querySelector(`.question[data-question="${currentQuestion}"]`).classList.add('active');
+updateProgress();
+}
+}
+
+function showResults() {
+document.querySelector(`.question[data-question="${currentQuestion}"]`).classList.remove('active');
+const pct = Math.round(score / totalQuestions * 100);
+document.getElementById('scoreCircle').textContent = pct + '%';
+
+let perf = '';
+if (pct === 100) perf = '🏆 Perfect! Ultimate logo expert!';
+else if (pct >= 80) perf = '🌟 Excellent! You really know your logos!';
+else if (pct >= 60) perf = '👍 Good job! Solid logo knowledge.';
+else if (pct >= 40) perf = '📚 Not bad! Many logos are tricky.';
+else perf = '💪 Keep learning! Logo design is fascinating.';
+
+document.getElementById('performance').innerHTML = `You scored ${score} out of ${totalQuestions}<br>${perf}`;
+document.getElementById('results').classList.add('show');
+}
+
+function restartQuiz() {
+currentQuestion = 1; score = 0; userAnswers = {};
+document.querySelectorAll('.question').forEach((q, i) => {
+q.classList.remove('active');
+q.querySelectorAll('.option').forEach(opt => opt.classList.remove('selected', 'correct', 'incorrect'));
+q.querySelectorAll('input').forEach(inp => { inp.checked = false; inp.disabled = false; });
+q.querySelector('.explanation').classList.remove('show');
+const btn = q.querySelector('.btn-primary');
+btn.textContent = 'Submit Answer';
+btn.onclick = () => checkAnswer(i + 1);
+});
+document.querySelector('.question[data-question="1"]').classList.add('active');
+document.getElementById('results').classList.remove('show');
+updateProgress();
+}
+
+updateProgress();
+</script>
+</body>
+</html>
